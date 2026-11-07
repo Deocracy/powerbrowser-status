@@ -1,31 +1,30 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+# Upptime config for PowerBrowser. The sites are exactly the targets Deocracy/powerbrowser derives
+# from configuration.toml (.github/upptime-targets.json); scripts/verify-upptime.mjs --live checks it.
+owner: Deocracy
+repo: powerbrowser-status
 
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  - name: Website
+    url: https://powerbrowser.org/
+  # The client asks for the eleven-segment path; this bare path 404s on a healthy Pages host,
+  # while an outage answers 5xx or 522.
+  - name: Update host
+    url: https://updates.powerbrowser.org/update.xml
+    expectedStatusCodes:
+      - 404
+  # The events endpoint takes POST only; a GET on a healthy Worker answers 405.
+  - name: Events endpoint
+    url: https://events.powerbrowser.org/events
+    expectedStatusCodes:
+      - 405
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  cname: status.powerbrowser.org
+  name: PowerBrowser status
+  introTitle: "PowerBrowser service status"
+  introMessage: "Availability of the PowerBrowser website, update host and error-report endpoint."
   navbar:
     - title: Status
       href: /
-    - title: GitHub
-      href: https://github.com/$OWNER/$REPO
-
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+    - title: PowerBrowser
+      href: https://powerbrowser.org/
